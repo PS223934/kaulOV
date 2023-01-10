@@ -20,6 +20,62 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
+        $roles = [
+            [
+                'name' => 'klant',
+                'permissions' => [
+                    'in/uit checken', 'persoonlijk top-up wallet'
+                ],
+                'parent_of' => [
+                    'admin','management', 'chauffeur'
+                ],
+            ],
+            [
+                'name' => 'chauffeur',
+                'permissions' => [
+                    'persoonlijk rooster bekijken', 'persoonlijk rit status wijzigen', 'vervanging vragen'
+                ],
+                'parent_of' => [
+                     'admin', 'management'
+                ],
+            ],
+            [
+                'name' => 'management',
+                'permissions' => [
+                    'globaal rooster administreren', 'chauffeurs administreren', 'globaal top-up wallet'
+                ],
+                'parent_of' => [
+                    'admin'
+                ],
+            ],
+            [
+                'name' => 'admin',
+                'permissions' => [
+                    'globaal administreren'
+                ],
+                'parent_of' => [],
+            ]
+        ];
+
+        foreach($roles as $role) {
+            $role_object = Role::findOrCreate(['name' => $role['name']]);
+            $permissions = $role['permissions'];
+            foreach($permissions as $permission) {
+                $permission = Permission::findOrCreate(['name' => $permission]);
+                if($role_object->hasPermissionTo($permission)) {break;}
+                $role_object->givePermissionTo($permission);
+            }
+
+            foreach($role['parent_of'] as $child) {
+                $child_role = Role::findOrCreate(['name' => $child]);
+                foreach($permissions as $permission) {
+                    $permission = Permission::findOrCreate(['name' => $permission]);
+                    if($role->hasPermissionTo($permission)) {break;}
+                    $role->givePermissionTo($permission);
+                }
+            }
+        }
+
         // Roles
         // balie
         $role = Role::create(['name' => 'balie']);
@@ -57,7 +113,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             PersonSeeder::class,
-            PizzaPointSeeder::class,
+            UserCreditSeeder::class,
             CategorySeeder::class,
             ProductSeeder::class,
         ]);

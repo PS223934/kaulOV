@@ -6,9 +6,9 @@ use App\Models\Person;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PizzaPoint>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserCredit>
  */
-class PizzaPointFactory extends Factory
+class UserCreditFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,7 +19,7 @@ class PizzaPointFactory extends Factory
     {
         return [
             'person_id' => Person::inRandomOrder()->first()->id,
-            'pizza_points' => $this->faker->randomNumber(3),
+            'credit' => 0,
         ];
     }
 }

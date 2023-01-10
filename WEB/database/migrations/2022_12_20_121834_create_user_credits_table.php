@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\PizzaPoint;
+use App\Models\UserCredit;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,10 +14,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pizza_points', function (Blueprint $table) {
+        Schema::create('user_credits', function (Blueprint $table) {
             $table->id();
             $table->foreignId('person_id');
-            $table->integer('pizza_points');
+            $table->double('credit');
             $table->timestamps();
         });
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pizza_points');
+        Schema::dropIfExists('user_credits');
     }
 };

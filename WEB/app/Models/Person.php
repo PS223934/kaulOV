@@ -12,9 +12,9 @@ class Person extends Model
     // every person has a user account and when user is created, person is created with same id
     protected $guarded = [];
 
-    public function pizzaPoint()
+    public function userCredit()
     {
-        return $this->hasMany(PizzaPoint::class);
+        return $this->hasMany(UserCredit::class);
     }
 
     public function user()

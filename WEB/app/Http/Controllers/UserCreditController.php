@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PizzaPoint;
+use App\Models\UserCredit;
 use Illuminate\Http\Request;
 
-class PizzaPointController extends Controller
+class UserCreditController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class PizzaPointController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PizzaPoint  $pizzaPoint
+     * @param  \App\Models\UserCredit  $pizzaPoint
      * @return \Illuminate\Http\Response
      */
-    public function show(PizzaPoint $pizzaPoint)
+    public function show(UserCredit $pizzaPoint)
     {
         //
     }
@@ -52,10 +52,10 @@ class PizzaPointController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PizzaPoint  $pizzaPoint
+     * @param  \App\Models\UserCredit  $pizzaPoint
      * @return \Illuminate\Http\Response
      */
-    public function edit(PizzaPoint $pizzaPoint)
+    public function edit(UserCredit $pizzaPoint)
     {
         //
     }
@@ -64,10 +64,10 @@ class PizzaPointController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PizzaPoint  $pizzaPoint
+     * @param  \App\Models\UserCredit  $pizzaPoint
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PizzaPoint $pizzaPoint)
+    public function update(Request $request, UserCredit $pizzaPoint)
     {
         //
     }
@@ -75,10 +75,10 @@ class PizzaPointController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PizzaPoint  $pizzaPoint
+     * @param  \App\Models\UserCredit  $pizzaPoint
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PizzaPoint $pizzaPoint)
+    public function destroy(UserCredit $pizzaPoint)
     {
         //
     }

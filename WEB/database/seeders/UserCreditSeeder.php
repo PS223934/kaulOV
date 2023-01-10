@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\PizzaPoint;
+use App\Models\UserCredit;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PizzaPointSeeder extends Seeder
+class UserCreditSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class PizzaPointSeeder extends Seeder
      */
     public function run()
     {
-        PizzaPoint::factory(500)->create();
+        UserCredit::factory(500)->create();
     }
 }

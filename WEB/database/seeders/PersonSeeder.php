@@ -20,7 +20,7 @@ class PersonSeeder extends Seeder
     {
         // Create a user with role admin
         // admin
-        $role = Role::create(['name' => 'admin']);
+        $role = Role::findByName(['name' => 'admin']);
         $permission = Permission::create(['name' => 'admin']);
         $role->givePermissionTo($permission);
         $first = "admin";
@@ -30,12 +30,12 @@ class PersonSeeder extends Seeder
         $user->assignRole('admin');
         Person::factory(['first_name' => $first, 'last_name' => $last, 'id' => $user->id])->create();
 
-        $roles = ['balie', 'bereiding', 'bezorger', 'management'];
+        $roles = ['chauffeur', 'management'];
 
         for($i = 0; $i < 500; $i++) {
             $person = Person::factory()->create();
-            // the role "klant" is the default role with 90% chance
-            $role = fake()->optional($weight = 0.1, $default = 'klant')->randomElement($roles);
+            // the role "klant" is the default role with 85% chance
+            $role = fake()->optional($weight = 0.15, $default = 'klant')->randomElement($roles);
             $person->user()->first()->assignRole($role);
         }
     }
