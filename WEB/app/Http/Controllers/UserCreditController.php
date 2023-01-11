@@ -41,10 +41,10 @@ class UserCreditController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\UserCredit  $pizzaPoint
+     * @param  \App\Models\UserCredit  $userCredit
      * @return \Illuminate\Http\Response
      */
-    public function show(UserCredit $pizzaPoint)
+    public function show(UserCredit $userCredit)
     {
         //
     }
@@ -52,10 +52,10 @@ class UserCreditController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\UserCredit  $pizzaPoint
+     * @param  \App\Models\UserCredit  $userCredit
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserCredit $pizzaPoint)
+    public function edit(UserCredit $userCredit)
     {
         //
     }
@@ -64,10 +64,10 @@ class UserCreditController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\UserCredit  $pizzaPoint
+     * @param  \App\Models\UserCredit  $userCredit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserCredit $pizzaPoint)
+    public function update(Request $request, UserCredit $userCredit)
     {
         //
     }
@@ -75,10 +75,10 @@ class UserCreditController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\UserCredit  $pizzaPoint
+     * @param  \App\Models\UserCredit  $userCredit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserCredit $pizzaPoint)
+    public function destroy(UserCredit $userCredit)
     {
         //
     }

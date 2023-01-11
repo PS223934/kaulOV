@@ -9,7 +9,7 @@ class UserCredit extends Model
 {
     use HasFactory;
 
-    public function totalPoints()
+    public function totalCredits()
     {
         UserCredit::all()->count();
     }
