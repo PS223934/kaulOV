@@ -20,14 +20,12 @@ class PersonSeeder extends Seeder
     {
         // Create a user with role admin
         // admin
-        $role = Role::findByName(['name' => 'admin']);
-        $permission = Permission::create(['name' => 'admin']);
-        $role->givePermissionTo($permission);
+        $role = Role::findByName('admin');
         $first = "admin";
         $last = "";
         $email = "admin@localhost";
         $user = User::factory(['name' => $first, 'email' => $email])->create();
-        $user->assignRole('admin');
+        $user->assignRole($role);
         Person::factory(['first_name' => $first, 'last_name' => $last, 'id' => $user->id])->create();
 
         $roles = ['chauffeur', 'management'];
