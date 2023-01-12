@@ -45,6 +45,15 @@ return [
                 ],
             ],
             [
+                'name' => 'toegang-app',
+                'permissions' => [
+                    'toegang-app'
+                ],
+                'parent_of' => [
+                    'admin', 'management', 'rosterer'
+                ],
+            ],
+            [
                 'name' => 'rosterer',
                 'permissions' => [
                     'chauffeurs beheren', 'schedules beheren'
