@@ -28,7 +28,7 @@ class PersonSeeder extends Seeder
         $user->assignRole($role);
         Person::factory(['first_name' => $first, 'last_name' => $last, 'id' => $user->id])->create();
 
-        $roles = ['chauffeur', 'management'];
+        $roles = ['chauffeur', 'management', 'servicedesk', 'rosterer'];
 
         for($i = 0; $i < 500; $i++) {
             $person = Person::factory()->create();
