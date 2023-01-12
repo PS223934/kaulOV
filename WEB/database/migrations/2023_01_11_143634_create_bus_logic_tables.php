@@ -27,8 +27,9 @@ return new class extends Migration
         });
 
         Schema::create('bus_active_line', function (Blueprint $table) {
-            $table->foreignId('bus_id')->unique();
             $table->foreignId('line_id');
+            $table->foreignId('bus_id')->unique();
+            $table->foreignId('user_id')->unique();
             $table->timestamps();
         });
 
@@ -44,8 +45,6 @@ return new class extends Migration
             $table->foreignId('stop_id');
             $table->timestamps();
         });
-
-
     }
 
     /**
@@ -55,6 +54,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bus_logic_tables');
+        Schema::dropIfExists('lines');
+        Schema::dropIfExists('busses');
+        Schema::dropIfExists('bus_active_line');
+        Schema::dropIfExists('stops');
+        Schema::dropIfExists('line_has_stops');
     }
 };
