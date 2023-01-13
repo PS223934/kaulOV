@@ -18,26 +18,143 @@
         <style>
             body {
                 font-family: 'Nunito', sans-serif;
+                overflow: hidden;
+                background: radial-gradient(ellipse at top, #efe7dd, transparent),
+                            radial-gradient(ellipse at bottom, #969696, transparent),
+                            radial-gradient(transparent 15%, #505050 90%);
             }
 
             @keyframes bgfade-in {
                 0% {opacity: 0%}
                 100% {opacity: 100%}
             }
-        </style>
-        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js'></script>
-        <script>
-            function pic() {
-                var bgm = ['{{asset('img/welcome/1.jpg')}}','{{asset('img/welcome/2.jpg')}}', '{{asset('img/welcome/3.jpg')}}'];
 
-                $('body').css({
-                    'background' : 'url('+ bgm[Math.floor(Math.random() * bgm.length)] + ') no-repeat fixed',
+            .bgimgcontainer {
+                background-position: center center;
+                background-size: cover;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                display: none;
+            }
+
+            .bg-in {
+                display: block;
+                -webkit-animation: bgfade-in 1s; /* Chrome, Safari, Opera */
+                animation: bgfade-in 1s;
+            }
+
+            .welcome-content {
+                opacity: 0%;
+            }
+
+            .animate-content {
+                animation: bgfade-in forwards 800ms 500ms;
+            }
+
+            /* loading anim */
+
+            .loadscreen {
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                transition: opacity 1s;
+            }
+
+            .loadscreen > img {
+                height: auto;
+                width: 250px;
+                margin-bottom: 40px;
+                padding: 10px;
+                filter: drop-shadow(0px 10px 5px rgb(187, 187, 187));
+            }
+
+            .loadscreen-hide {
+                opacity: 0%;
+            }
+
+            .spinner {
+                -webkit-animation: rotate 2s linear infinite;
+                animation: rotate 2s linear infinite;
+                z-index: 2;
+                margin: 20px 0 0 0;
+                width: 50px;
+                height: 50px;
+                display: inline-block;
+            }
+            .spinner .path {
+                stroke: #8d8d8d;
+                stroke-linecap: round;
+                -webkit-animation: dash 1.5s ease-in-out infinite;
+                animation: dash 1.5s ease-in-out infinite;
+            }
+
+            @-webkit-keyframes rotate {
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            @keyframes rotate {
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+            @-webkit-keyframes dash {
+                0% {
+                    stroke-dasharray: 1, 150;
+                    stroke-dashoffset: 0;
+                }
+                50% {
+                    stroke-dasharray: 90, 150;
+                    stroke-dashoffset: -35;
+                }
+                100% {
+                    stroke-dasharray: 90, 150;
+                    stroke-dashoffset: -124;
+                }
+            }
+            @keyframes dash {
+                0% {
+                    stroke-dasharray: 1, 150;
+                    stroke-dashoffset: 0;
+                }
+                50% {
+                    stroke-dasharray: 90, 150;
+                    stroke-dashoffset: -35;
+                }
+                100% {
+                    stroke-dasharray: 90, 150;
+                    stroke-dashoffset: -124;
+                }
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script>
+            function setbgimg() {
+                const url = '{{asset('img/welcome')}}/' + Math.ceil(Math.random() * 38) + '.jpg';
+                let bgImgPreload = $('<img src="'+url+'">').on('load', function() {
+                    $('.bgimgcontainer').css('background-image', 'url(' + url + ')');
+                    setInterval(function () {
+                        $('.bgimgcontainer').addClass('bg-in');
+                        $('.welcome-content').addClass('animate-content');
+                        $('.loadscreen').addClass('loadscreen-hide')
+                    },1000)
+
+                    bgImgPreload = null;
                 });
             }
         </script>
     </head>
-    <body class="antialiased" onload="pic()">
-        <div class="relative flex items-top justify-center min-h-screen sm:items-center py-4 sm:pt-0">
+    <body class="antialiased" onload="setbgimg()">
+        <div class="bgimgcontainer"></div>
+        <div class="welcome-content relative flex items-top justify-center min-h-screen sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
@@ -59,6 +176,12 @@
                 <x-schedule-search/>
 
             </div>
+        </div>
+        <div class="loadscreen">
+            <img alt="rounded_logo" src="{{asset('img/logo round.png')}}">
+            <svg class="spinner" viewBox="0 0 50 50">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+            </svg>
         </div>
     </body>
 </html>
