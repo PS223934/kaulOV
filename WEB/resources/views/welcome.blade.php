@@ -29,6 +29,17 @@
                 100% {opacity: 100%}
             }
 
+            @keyframes bgfade-blur {
+                0% {
+                    filter: blur(0px);
+                    opacity: 100%;
+                }
+                100% {
+                    filter: blur(6px);
+                    opacity: 100%;
+                }
+            }
+
             .bgimgcontainer {
                 background-position: center center;
                 background-size: cover;
@@ -44,12 +55,16 @@
                 animation: bgfade-in 1s;
             }
 
+            .bg-blur {
+                animation: bgfade-blur forwards 1s;
+            }
+
             .welcome-content {
                 opacity: 0%;
             }
 
             .animate-content {
-                animation: bgfade-in forwards 800ms 500ms;
+                animation: bgfade-in forwards 800ms 800ms;
             }
 
             /* loading anim */
@@ -77,6 +92,10 @@
 
             .loadscreen-hide {
                 opacity: 0%;
+            }
+
+            .loadscreen-closed {
+                display: none;
             }
 
             .spinner {
@@ -146,9 +165,20 @@
                         $('.welcome-content').addClass('animate-content');
                         $('.loadscreen').addClass('loadscreen-hide')
                     },1000)
-
+                    setInterval(function () {
+                        $('.loadscreen').addClass('loadscreen-closed')
+                        $('.bgimgcontainer').addClass('bg-blur');
+                    }, 1450)
                     bgImgPreload = null;
                 });
+            }
+
+            function wSwitchTab(element) {
+                $('.w-nav-active').removeClass('w-nav-active');
+                $(element).addClass('w-nav-active');
+
+                $('.active-component').removeClass('active-component');
+                $('.'+element.dataset.jslb+'-component').addClass('active-component');
             }
         </script>
     </head>
@@ -169,16 +199,16 @@
                 </div>
             @endif
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <h1>Waar gaat u vandaag naartoe?</h1>
+            <div class="w-content w-6xl mx-auto sm:px-6 lg:px-8">
+                <div class="main-wrapper bg-white dark:bg-white w-1/2 overflow-hidden shadow sm:rounded-lg">
+                    <div class="schedule-component active-component"><x-schedule-search/></div>
+                    <div class="login-component"><x-login-form/></div>
                 </div>
-                <x-schedule-search/>
-
+                <x-welcome-navigation/>
             </div>
         </div>
         <div class="loadscreen">
-            <img alt="rounded_logo" src="{{asset('img/logo round.png')}}">
+            <x-application-logo/>
             <svg class="spinner" viewBox="0 0 50 50">
                 <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
             </svg>

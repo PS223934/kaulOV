@@ -1,0 +1,82 @@
+.w-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.main-wrapper {
+    width: 500px;
+    height: 350px;
+    z-index: 2;
+    border: 1px solid rgba(65, 65, 65, 0.72);
+}
+
+/* components */
+.schedule-component, .login-component {
+    display: none;
+}
+
+.schedule-container, .login-container {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+}
+
+.active-component {
+    display: block;
+}
+
+.q-title {
+    color: black;
+    padding: 4px;
+    margin: 0px;
+}
+
+.break {
+    border: 1px rgba(100, 100, 100, 0.33) solid;
+    margin-bottom: 10px;
+}
+
+/* welcome-nav */
+.w-nav {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1px;
+    margin-top: 20px;
+    z-index: 1;
+}
+
+.w-nav-element {
+    display: inline-block;
+    margin-left: -35px;
+    background-color: white;
+    margin-bottom: 10px;
+    height: 45px;
+    width: 115px;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: margin-left 500ms ease;
+}
+
+.w-nav-active {
+    margin-left: -7px;
+}
+
+.w-nav-element > p {
+    line-height: 14px;
+    margin-top: 15px;
+    margin-right: 10px;
+    text-align: right;
+}
+/* schedule-search */
+
+.r-input {
+    border: gray 1px solid;
+    border-radius: 8px;
+    height: 35px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* login-form */
+
+
