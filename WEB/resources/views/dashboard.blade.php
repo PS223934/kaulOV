@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="p-6 text-gray-900">
-        {{ __("You're logged in!") }}
+        <x-schedule-search/>
     </div>
-    <x-product-list/>
 @endsection

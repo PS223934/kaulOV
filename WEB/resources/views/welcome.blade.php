@@ -164,7 +164,7 @@
                         $('.bgimgcontainer').addClass('bg-in');
                         $('.welcome-content').addClass('animate-content');
                         $('.loadscreen').addClass('loadscreen-hide')
-                    },1000)
+                    },500)
                     setInterval(function () {
                         $('.loadscreen').addClass('loadscreen-closed')
                         $('.bgimgcontainer').addClass('bg-blur');
