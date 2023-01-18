@@ -33,6 +33,12 @@ return new class extends Migration
             $table->text('notes')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('person_ride_history', function (Blueprint $table) {
+            $table->unsignedBigInteger('person_id');
+            $table->foreignId('ride_id');
+            $table->foreign('person_id')->references('id')->on('people');
+        });
     }
 
     /**
@@ -42,6 +48,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('persons');
+        Schema::dropIfExists('people');
+        Schema::dropIfExists('person_ride_history');
     }
 };

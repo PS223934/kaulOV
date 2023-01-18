@@ -20,7 +20,7 @@ return [
             [
                 'name' => 'klant',
                 'permissions' => [
-                    'in/uit checken', 'persoonlijk top-up wallet'
+                    'in/uit checken', 'persoonlijk top-up wallet', 'reisgeschiedenis bekijken'
                 ],
                 'parent_of' => [
                     'admin','management', 'chauffeur', 'servicedesk', 'rosterer'

@@ -3,6 +3,7 @@
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ScheduleController;
 use App\Models\Person;
 use App\Models\User;
 use Illuminate\Routing\Controller;
@@ -43,6 +44,18 @@ Route::middleware('auth')->group(function () {
 // management routes protected by the role middleware for management and the admin user
 Route::middleware(['role:management|admin'])->group(function () {
     Route::resource('persons', PersonController::class);
+});
+
+Route::middleware(['permission:reisgeschiedenis bekijken'])->group(function () {
+    Route::get('/history', [ScheduleController::class, 'viewHistory'])->name('schedule.viewHistory');
+});
+
+Route::middleware(['permission:persoonlijk rooster bekijken'])->group(function () {
+    Route::get('/roster', [ScheduleController::class, 'viewRoster'])->name('schedule.viewRoster');
+});
+
+Route::middleware(['permission:schedules beheren'])->group(function () {
+    Route::resource('scheduler', ScheduleController::class);
 });
 
 // the route for management to create an employee from a user (change the role)

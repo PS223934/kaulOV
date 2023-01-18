@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:reisgeschiedenis bekijken', ['only' => ['viewHistory']]);
+        $this->middleware('permission:persoonlijk rooster bekijken', ['only' => ['viewRoster']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,8 +19,17 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        //
+        return view('schedule.index');
     }
+
+    public function viewHistory() {
+        return view('schedule.viewHistory');
+    }
+
+    public function viewRoster() {
+        return view('schedule.viewRoster');
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -23,7 +38,7 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        //
+        return view('schedule.create');
     }
 
     /**
@@ -56,7 +71,7 @@ class ScheduleController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('schedule.edit');
     }
 
     /**

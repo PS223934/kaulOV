@@ -26,11 +26,27 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('bus_active_line', function (Blueprint $table) {
+        Schema::create('rides', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('line_id');
-            $table->foreignId('bus_id')->unique();
-            $table->foreignId('user_id')->unique();
+            $table->unsignedBigInteger('bus_id');
+            $table->unsignedBigInteger('chauffeur_id');
             $table->timestamps();
+            $table->foreign('bus_id')->references('id')->on('busses')->onDelete('cascade');
+            $table->foreign('chauffeur_id')->references('id')->on('people')->onDelete('cascade');
+        });
+
+        Schema::create('active_rides', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('ride_id');
+            $table->timestamps();
+        });
+
+        Schema::create('ride_has_people', function (Blueprint $table) {
+            $table->unsignedBigInteger('person_id');
+            $table->unsignedBigInteger('active_ride_id')->nullable();
+            $table->foreign('person_id')->references('id')->on('people')->onDelete('cascade');
+            $table->foreign('active_ride_id')->references('id')->on('active_rides')->nullOnDelete();
         });
 
         Schema::create('stops', function (Blueprint $table) {
@@ -56,7 +72,9 @@ return new class extends Migration
     {
         Schema::dropIfExists('lines');
         Schema::dropIfExists('busses');
-        Schema::dropIfExists('bus_active_line');
+        Schema::dropIfExists('rides');
+        Schema::dropIfExists('active_rides');
+        Schema::dropIfExists('ride_has_people');
         Schema::dropIfExists('stops');
         Schema::dropIfExists('line_has_stops');
     }

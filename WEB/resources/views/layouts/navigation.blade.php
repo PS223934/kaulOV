@@ -43,6 +43,12 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        @if (Auth::user()->hasPermissionTo(3))
+                            <x-dropdown-link :href="route('profile.edit')">
+                                {{ __('Top-up balance') }}
+                            </x-dropdown-link>
+                        @endif
+
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
