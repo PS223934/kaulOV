@@ -161,9 +161,13 @@
                 let bgImgPreload = $('<img src="'+url+'">').on('load', function() {
                     $('.bgimgcontainer').css('background-image', 'url(' + url + ')');
                     setInterval(function () {
+                        @auth
+                        window.location = "/dashboard";
+                        @else
                         $('.bgimgcontainer').addClass('bg-in');
                         $('.welcome-content').addClass('animate-content');
                         $('.loadscreen').addClass('loadscreen-hide')
+                        @endauth
                     },500)
                     setInterval(function () {
                         $('.loadscreen').addClass('loadscreen-closed')
@@ -190,8 +194,6 @@
                     @auth
                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
                         @endif
