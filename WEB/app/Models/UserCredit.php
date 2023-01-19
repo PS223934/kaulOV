@@ -9,6 +9,7 @@ class UserCredit extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['person_id', 'credit'];
     public function totalCredits()
     {
         UserCredit::all()->count();

@@ -2,20 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserCredit;
 use Illuminate\Http\Request;
-use Laravel\Sanctum\PersonalAccessToken;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\HasApiTokens;
 
-class UserCreditController extends Controller
+
+class TokenController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        return view('usercredit.index');
+        $token = Auth::user()->tokens()->get()->pluck('token')->toArray();
+        if(!$token) {
+            return redirect()->route('app-login.create');
+        }
+        return view('app-login.index', ['token' => $token]);
     }
 
     /**
@@ -25,9 +31,15 @@ class UserCreditController extends Controller
      */
     public function create()
     {
-        //
+        return view('app-login.create');
     }
 
+    public function generate(Request $request) {
+        Auth::user()->tokens()->delete();
+
+        $request->user()->createToken('DesktopAuth_'.$request->user()->name);
+        return redirect()->route('app-login.index');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -42,10 +54,10 @@ class UserCreditController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\UserCredit  $userCredit
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(UserCredit $userCredit)
+    public function show($id)
     {
         //
     }
@@ -53,10 +65,10 @@ class UserCreditController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\UserCredit  $userCredit
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserCredit $userCredit)
+    public function edit($id)
     {
         //
     }
@@ -65,10 +77,10 @@ class UserCreditController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\UserCredit  $userCredit
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserCredit $userCredit)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +88,10 @@ class UserCreditController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\UserCredit  $userCredit
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserCredit $userCredit)
+    public function destroy($id)
     {
         //
     }

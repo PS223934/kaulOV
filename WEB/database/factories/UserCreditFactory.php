@@ -15,10 +15,13 @@ class UserCreditFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    public int $iter = 0;
     public function definition()
     {
+        $this->iter = $this->iter+1;
+
         return [
-            'person_id' => Person::inRandomOrder()->first()->id,
+            'person_id' => $this->iter,
             'credit' => 0,
         ];
     }

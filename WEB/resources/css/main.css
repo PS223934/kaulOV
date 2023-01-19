@@ -14,3 +14,81 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.spinner {
+    -webkit-animation: rotate 2s linear infinite;
+    animation: rotate 2s linear infinite;
+    z-index: 2;
+    margin: 20px 0 0 0;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
+.spinner .path {
+    stroke: #8d8d8d;
+    stroke-linecap: round;
+    -webkit-animation: dash 1.5s ease-in-out infinite;
+    animation: dash 1.5s ease-in-out infinite;
+}
+
+@-webkit-keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes dash {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+    }
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+    }
+}
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+    }
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+    }
+}
+/*shh*/
+
+.interestingcontainer {
+    display: flex;
+}
+
+.interestingdivbro {
+    width: fit-content;
+}
+
+.evenmoreinterestingdivbro {
+    width: 100%;
+    display: flex;
+}
+
+.creditcontainer {
+    padding: 15px;
+}
+
+.credittag {
+    font-size: 12px;
+}
