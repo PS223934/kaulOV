@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\UserCredit;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\PersonalAccessToken;
-
+use Illuminate\Support\Facades\Log;
 class UserCreditController extends Controller
 {
     /**
@@ -15,7 +15,18 @@ class UserCreditController extends Controller
      */
     public function index()
     {
-        return view('usercredit.index');
+
+        $this->_navLog(__FUNCTION__); return view('usercredit.index');
+    }
+
+    public function a2bal(Request $request) {
+        $amount = (int)$request->amount;
+        dd(gettype($amount));
+        if(gettype($amount) != 'integer') {
+            $this->_navLog(__FUNCTION__); return view('usercredit.failed');
+        }
+
+        $this->_navLog(__FUNCTION__); return view('usercredit.success');
     }
 
     /**
@@ -82,5 +93,9 @@ class UserCreditController extends Controller
     public function destroy(UserCredit $userCredit)
     {
         //
+    }
+
+    public function _navLog($data) {
+        Log::channel('UserNavigationActivity')->info(\Auth::user()->name.'('.\Auth::id().', '.\Auth::user()->roles[0]->name.') accessed function '.static::class.'::'.$data);
     }
 }

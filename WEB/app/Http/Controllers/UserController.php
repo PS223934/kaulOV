@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -16,6 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::orderBy('created_at', 'desc')->get();
+        $this->_navLog(__FUNCTION__);
         return view('user.index', [
             'users' => $users
         ]);
@@ -62,6 +64,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::all();
+        $this->_navLog(__FUNCTION__);
         return view('user.edit', [
             'user' => $user,
             'roles' => $roles
@@ -78,7 +81,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->syncRoles($request->roles);
-        return redirect()->route('users.index');
+        $this->_navLog(__FUNCTION__); return redirect()->route('users.index');
     }
 
     /**
@@ -90,5 +93,9 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function _navLog($data) {
+        Log::channel('UserNavigationActivity')->info(\Auth::user()->name.'('.\Auth::id().', '.\Auth::user()->roles[0]->name.') accessed function '.static::class.'::'.$data);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ScheduleController extends Controller
 {
@@ -19,15 +20,15 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        return view('schedule.index');
+        $this->_navLog(__FUNCTION__); return view('schedule.index');
     }
 
     public function viewHistory() {
-        return view('schedule.viewHistory');
+        $this->_navLog(__FUNCTION__); return view('schedule.viewHistory');
     }
 
     public function viewRoster() {
-        return view('schedule.viewRoster');
+        $this->_navLog(__FUNCTION__); return view('schedule.viewRoster');
     }
 
 
@@ -38,7 +39,7 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        return view('schedule.create');
+        $this->_navLog(__FUNCTION__); return view('schedule.create');
     }
 
     /**
@@ -71,7 +72,7 @@ class ScheduleController extends Controller
      */
     public function edit($id)
     {
-        return view('schedule.edit');
+        $this->_navLog(__FUNCTION__); return view('schedule.edit');
     }
 
     /**
@@ -95,5 +96,8 @@ class ScheduleController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function _navLog($data) {
+        Log::channel('UserNavigationActivity')->info(\Auth::user()->name.'('.\Auth::id().', '.\Auth::user()->roles[0]->name.') accessed function '.static::class.'::'.$data);
     }
 }

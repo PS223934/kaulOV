@@ -51,15 +51,16 @@ Route::middleware(['role:management|admin'])->group(function () {
 });
 
 Route::middleware(['permission:persoonlijk top-up wallet'])->group(function () {
-    Route::resource('topup', UserCreditController::class);
+    Route::get('topup', [UserCreditController::class, 'index'])->name('topup.index');
+    Route::post('topup', [UserCreditController::class, 'a2bal'])->name('topup.a2bal');
 });
 
 Route::middleware(['permission:reisgeschiedenis bekijken'])->group(function () {
-    Route::get('/history', [ScheduleController::class, 'viewHistory'])->name('schedule.viewHistory');
+    Route::get('history', [ScheduleController::class, 'viewHistory'])->name('schedule.viewHistory');
 });
 
 Route::middleware(['permission:persoonlijk rooster bekijken'])->group(function () {
-    Route::get('/roster', [ScheduleController::class, 'viewRoster'])->name('schedule.viewRoster');
+    Route::get('roster', [ScheduleController::class, 'viewRoster'])->name('schedule.viewRoster');
 });
 
 Route::middleware(['permission:schedules beheren'])->group(function () {

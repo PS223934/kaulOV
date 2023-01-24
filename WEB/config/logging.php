@@ -117,6 +117,29 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
-    ],
 
+        'UserNavigationActivity' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/UserNavigationActivity.log'),
+            'level' => 'info',
+        ],
+
+        'UserTravelActivity' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/UserTravelActivity.log'),
+            'level' => 'info',
+        ],
+
+        'UserPaymentActivity' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/UserPaymentActivity.log'),
+            'level' => 'info',
+        ],
+
+        'AdministrativeActivity' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/AdministrativeActivity.log'),
+            'level' => 'info',
+        ],
+    ],
 ];

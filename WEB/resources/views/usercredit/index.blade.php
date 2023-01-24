@@ -35,7 +35,7 @@
     </script>
     <div class="p-6 text-gray-900">
         <h1>Top up your balance</h1>
-        <form>
+        <form action="{{route('topup.a2bal')}}" method="post">
             @csrf
             <div class="topupamountcontainer">
                 <h2 class="mb-2">select your payment amount:</h2>
@@ -68,7 +68,7 @@
             <div id="paymentmethodcontainer" class="paymentmethodcontainer hidden">
                 <h2 class="mb-2">select your payment method:</h2>
 
-                <button class="paymentmethodconfirm">
+                <button type='submit' class="paymentmethodconfirm">
                     <p>ideal</p>
                     <img src="https://www.ideal.nl/cms/themes/ideal_nl/img/ideal_logo.svg" alt="iDEAL" width="81" height="70">
                 </button>
