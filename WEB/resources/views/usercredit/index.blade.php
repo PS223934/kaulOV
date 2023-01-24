@@ -3,33 +3,50 @@
 @section('content')
     <script>
         function amountchange(element) {
-            const elements = document.getElementsByClassName('paymentamount');
             const input = document.getElementById('paymentamountinput');
             const data = element.dataset.eur;
 
-            for (let i = 0; i < elements.length; i++) {
-                $(elements[i]).removeClass('paymentamountselected');
-            }
+            if (element.dataset.eur == 'custom' && $(element).hasClass('paymentamountselected')) {return;}
+            resetElementGroup('paymentamount');
 
             $(element).addClass('paymentamountselected');
             $(input).addClass('hidden');
             if(data == "custom") {
                 $(input).val('');
-                $('#paymentmethodcontainer').addClass('hidden')
+                $('#paymentmethodcontainer').addClass('hidden');
+                $('#checkoutbtn').addClass('hidden');
+                resetElementGroup('paymentmethod');
                 $(input).removeClass('hidden');
                 return;
             }
             $(input).val(data);
-            inputchange(input);
+            inputchange(input, 'paymentmethodcontainer');
         }
 
-        function inputchange(input) {
+        function inputchange(input, elementid) {
             $(input).val($(input).val().replace(/[^0-9]/g, ''));
             const inputvalue = parseInt($(input).val());
-            console.log(inputvalue);
-            $('#paymentmethodcontainer').addClass('hidden')
-            if(inputvalue >= 5) {
-                $('#paymentmethodcontainer').removeClass('hidden')
+            $('#'+elementid).addClass('hidden');
+
+            if(inputvalue >= 5 && elementid == "paymentmethodcontainer" || inputvalue <= {{$vendors->count()}} && elementid == "checkoutbtn") {
+                $('#'+elementid).removeClass('hidden');
+            }
+        }
+
+        function vendorchange(element) {
+            const input = document.getElementById('paymentmethodinput');
+            resetElementGroup('paymentmethod');
+
+            $(element).addClass('paymentmethodselected');
+            $(input).val(element.dataset.vendor);
+            $('#checkoutbtn').removeClass('hidden');
+        }
+
+        function resetElementGroup(groupName) {
+            const elements = document.getElementsByClassName(groupName);
+
+            for (let i = 0; i < elements.length; i++) {
+                $(elements[i]).removeClass(groupName+'selected');
             }
         }
     </script>
@@ -38,7 +55,7 @@
         <form action="{{route('topup.a2bal')}}" method="post">
             @csrf
             <div class="topupamountcontainer">
-                <h2 class="mb-2">select your payment amount:</h2>
+                <h2 class="mb-2">select your desired payment amount:</h2>
                 <div class="paymentamountcontainer">
                     <div onclick="amountchange(this)" data-eur="5" class="paymentamount">
                         <p>&euro;5</p>
@@ -62,17 +79,23 @@
                         <p>custom</p>
                     </div>
                 </div>
-                <input onsubmit="e.preventDefault();" oninput="inputchange(this)" name="amount" type="number" min="5" id="paymentamountinput" class="r-input hidden"/>
+                <input onsubmit="e.preventDefault();" oninput="inputchange(this, 'paymentmethodcontainer')" name="amount" type="number" min="5" max="5000" id="paymentamountinput" class="r-input hidden"/>
             </div>
 
             <div id="paymentmethodcontainer" class="paymentmethodcontainer hidden">
-                <h2 class="mb-2">select your payment method:</h2>
-
-                <button type='submit' class="paymentmethodconfirm">
-                    <p>ideal</p>
-                    <img src="https://www.ideal.nl/cms/themes/ideal_nl/img/ideal_logo.svg" alt="iDEAL" width="81" height="70">
-                </button>
+                <h2 class="mb-2">select a payment method:</h2>
+                <div class="paymentmethods">
+                    @foreach($vendors as $vendor)
+                        <div data-vendor="{{$vendor->id}}" onclick="vendorchange(this)" class="paymentmethod">
+                            <div class="vendorimgcontainer">
+                                <img class="vendorimg" src="{{$vendor->image_url}}" alt="{{$vendor->name}}" width="81" height="70">
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
+            <input onsubmit="e.preventDefault();" oninput="inputchange(this, 'checkoutbtn')" name="vendor" id="paymentmethodinput" class="r-input hidden"/>
+            <x-primary-button id="checkoutbtn" class="hidden mt-12">checkout</x-primary-button>
         </form>
     </div>
 @endsection

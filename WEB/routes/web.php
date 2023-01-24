@@ -53,6 +53,8 @@ Route::middleware(['role:management|admin'])->group(function () {
 Route::middleware(['permission:persoonlijk top-up wallet'])->group(function () {
     Route::get('topup', [UserCreditController::class, 'index'])->name('topup.index');
     Route::post('topup', [UserCreditController::class, 'a2bal'])->name('topup.a2bal');
+    Route::get('topup/success', [UserCreditController::class, 'a2success'])->name('topup.success');
+    Route::get('topup/failed', [UserCreditController::class, 'a2failed'])->name('topup.failed');
 });
 
 Route::middleware(['permission:reisgeschiedenis bekijken'])->group(function () {

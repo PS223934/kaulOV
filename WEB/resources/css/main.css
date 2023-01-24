@@ -100,7 +100,7 @@ h1 {
 
 .paymentamountcontainer {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     flex-direction: row;
 }
 
@@ -111,11 +111,6 @@ h1 {
     border-radius: 3px;
     margin-right: 5px;
     transition: background-color 125ms ease, border 125ms ease;
-}
-
-.paymentamountselected {
-    background-color: #4e8aff;
-    border: 1px solid #4e8aff;
 }
 
 .paymentamount > p {
@@ -143,19 +138,40 @@ h1 {
     margin-top: 50px;
 }
 
-.paymentmethodconfirm {
+.paymentmethods {
+    display: flex;
+}
+
+.paymentmethod {
+    cursor: pointer;
+    display: inline-block;
     border: 1px solid black;
     border-radius: 5px;
     width: 120px;
     height: 100px;
-    transition: background-color ease 300ms;
-    align-items: center;
+    transition: background-color ease 125ms;
+    margin-right: 7px;
 }
 
 .paymentmethod:hover {
-    background-color: #d2d2d2;
+    background-color: #5992ff;
+    border: #5992ff 1px solid;
 }
 
 .paymentmethod > p {
     width: fit-content;
 }
+
+.paymentamountselected, .paymentmethodselected {
+    background-color: #4e8aff;
+    border: 1px solid #4e8aff;
+}
+
+.vendorimgcontainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+

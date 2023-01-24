@@ -28,7 +28,7 @@
             }
 
             function setUserCredit() {
-                const element =  document.getElementById('creditDisplay');
+                const element = document.getElementById('creditDisplay');
                 const rawCredit = element.dataset.credit.toString();
                 let wholes = rawCredit.substring(0, rawCredit.length - 2);
                 const decimals = ('0' + rawCredit.slice(-2)).slice(-2);
@@ -38,6 +38,10 @@
 
                 console.log(parsedCredit);
                 element.innerHTML = parsedCredit;
+
+                if(window.location == '{{route('topup.success')}}') {
+                    document.getElementById('newcredit').innerHTML = parsedCredit;
+                }
             };
 
             $(document).ready(function() {
