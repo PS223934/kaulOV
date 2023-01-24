@@ -1,3 +1,8 @@
+h1 {
+    font-size: 25px;
+    font-weight: bold;
+}
+
 .navimg {
     width: 50px;
     height: auto;
@@ -91,4 +96,66 @@
 
 .credittag {
     font-size: 12px;
+}
+
+.paymentamountcontainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.paymentamount {
+    border: 1px solid black;
+    width: 60px;
+    height: 35px;
+    border-radius: 3px;
+    margin-right: 5px;
+    transition: background-color 125ms ease, border 125ms ease;
+}
+
+.paymentamountselected {
+    background-color: #4e8aff;
+    border: 1px solid #4e8aff;
+}
+
+.paymentamount > p {
+    height: 100%;
+    width: 95%;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.paymentamount:hover {
+    background-color: #5992ff;
+    border: #5992ff 1px solid;
+    cursor: pointer;
+}
+
+#customamountbtn {
+    width: 75px;
+}
+
+#customamountbtn > p {
+    width: 99%;
+}
+
+.paymentmethodcontainer {
+    margin-top: 50px;
+}
+
+.paymentmethodconfirm {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 120px;
+    height: 100px;
+    transition: background-color ease 300ms;
+    align-items: center;
+}
+
+.paymentmethod:hover {
+    background-color: #d2d2d2;
+}
+
+.paymentmethod > p {
+    width: fit-content;
 }

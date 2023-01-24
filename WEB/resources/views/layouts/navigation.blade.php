@@ -42,17 +42,17 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <div class="creditcontainer">
-                            <p class="credittag">{{ __('uw crediet:') }} </p>
-                            <p id="creditDisplay" data-credit="{{ App\Models\UserCredit::all()->where('person_id', Auth::id())->value('credit') }}">
-                                <svg class="spinner" viewBox="0 0 50 50">
-                                    <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
-                                </svg>
-                            </p>
-                        </div>
+
                     @if (Auth::user()->hasPermissionTo(3))
                             <x-dropdown-link :href="route('topup.index')">
-                                {{ __('Top-up balance') }}
+                                <div class="creditcontainer">
+                                    <p class="credittag">{{ __('uw crediet:') }} </p>
+                                    <p id="creditDisplay" data-credit="{{ App\Models\UserCredit::all()->where('person_id', Auth::id())->value('credit') }}">
+                                        <svg class="spinner" viewBox="0 0 50 50">
+                                            <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                                        </svg>
+                                    </p>
+                                </div>
                             </x-dropdown-link>
                         @endif
 
