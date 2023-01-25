@@ -114,11 +114,7 @@ class UserCreditController extends Controller
 
     public function procPayment($walletid, $amount, $vendor) {
         $c = UserCredit::all()->where('id', $walletid)->value('credit');
-        $oc = UserCredit::findOrFail($walletid);
-        $nc = $c + ($amount*100);
-        $this->newTransaction($vendor, 1, $amount, $walletid);
-
-        Log::channel('UserPaymentActivity')->info(\Auth::user()->name.'('.\Auth::id().', '.\Auth::user()->roles[0]->name.') deposited '. $amount*100 .' credits. |' . $c . ' -> '. $nc . '| through '. $vendor);
+        $this->newTransaction($vendor, 1, $amount*100, $walletid);
     }
 
     public function _navLog($data) {

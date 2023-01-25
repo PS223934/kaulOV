@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Models\UserCredit;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Vendor;
@@ -16,8 +17,8 @@ trait TransactionTrait {
      * @param Request $request
      * @return $this|false|string
      */
-    public function newTransaction($vendor, $type, $amount, $wallet) {
-        $t_id = Str::random(32);
+    public function newTransaction($vendor, $type, $amount, $walletid) {
+        $t_id = Str::lower(Str::random(32));
         $transaction = new Transaction();
         $transaction->id = $t_id;
         $transaction->type_id = $type;
@@ -25,18 +26,26 @@ trait TransactionTrait {
         $transaction->amount = $amount;
         $transaction->save();
 
-        $this->registerTransaction($transaction, $wallet);
+        Log::channel('UserPaymentActivity')->info(\Auth::user()->name.'('.\Auth::id().', '.\Auth::user()->roles[0]->name.') made transaction '. $t_id .' through ' . Vendor::findOrFail($vendor)->name);
+
+        $this->registerTransaction($transaction, $walletid, $t_id);
     }
 
-    public function registerTransaction($transaction, $walletid) {
+    public function registerTransaction($transaction, $walletid, $t_id) {
         $wallet = UserCredit::findOrFail($walletid);
-        $type = Transaction_type::findOrFail($transaction->type);
+        $type = Transaction_type::findOrFail($transaction->type_id);
         if($type->increase) {
+            Log::channel('UserPaymentActivity')->info(\Auth::user()->name.'('.\Auth::id().', '.\Auth::user()->roles[0]->name.') registered '. $t_id .' '. $transaction->amount .' credits to wallet '.$wallet->id.'. |' . $wallet->credit . ' -> '. $wallet->credit+$transaction->amount . '| type: '. $type->name);
             $wallet->credit = $wallet->credit + $transaction->amount;
         }
         else {
+            Log::channel('UserPaymentActivity')->info(\Auth::user()->name.'('.\Auth::id().', '.\Auth::user()->roles[0]->name.') registered '. $t_id .' '. $transaction->amount .' credits to wallet '.$wallet->id.'. |' . $wallet->credit . ' -> '. $wallet->credit-$transaction->amount . '| type: '. $type->name);
             $wallet->credit = $wallet->credit - $transaction->amount;
         }
         $wallet->save();
+    }
+
+    public function refreshWallet($walletid) {
+        
     }
 }
