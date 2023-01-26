@@ -1,7 +1,2 @@
-@extends('layouts.dashboard')
+@extends('layouts.scheduler')
 
-@section('content')
-    <div class="p-6 text-gray-900">
-
-    </div>
-@endsection

@@ -26,7 +26,7 @@ trait TransactionTrait {
         $transaction->amount = $amount;
         $transaction->save();
 
-        Log::channel('UserPaymentActivity')->info(\Auth::user()->name.'('.\Auth::id().', '.\Auth::user()->roles[0]->name.') made transaction '. $t_id .' through ' . Vendor::findOrFail($vendor)->name);
+        Log::channel('UserPaymentActivity')->info(\Auth::user()->name.'('.\Auth::id().', '.\Auth::user()->roles[0]->name.') new transaction '. $t_id .' through ' . Vendor::findOrFail($vendor)->name);
 
         $this->registerTransaction($transaction, $walletid, $t_id);
     }
@@ -46,6 +46,6 @@ trait TransactionTrait {
     }
 
     public function refreshWallet($walletid) {
-        
+
     }
 }
