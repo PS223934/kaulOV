@@ -16,6 +16,8 @@
         "vite": "^4.0.4"
     },
     "dependencies": {
+        "@google/markerclusterer": "^2.0.9",
+        "@googlemaps/markerclusterer": "^2.0.15",
         "@googlemaps/three": "^3.0.3",
         "three": "^0.148.0"
     }
