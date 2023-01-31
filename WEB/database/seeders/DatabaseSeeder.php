@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Person;
+use App\Models\Stop;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
@@ -42,6 +43,7 @@ class DatabaseSeeder extends Seeder
         }
 
         $this->call([
+            StopSeeder::class,
             PersonSeeder::class,
             UserCreditSeeder::class,
         ]);

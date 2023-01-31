@@ -49,12 +49,20 @@ return new class extends Migration
             $table->foreign('active_ride_id')->references('id')->on('active_rides')->nullOnDelete();
         });
 
+        Schema::create('stop_types', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('icon');
+            $table->timestamps();
+        });
+
         Schema::create('stops', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('type');
-            $table->float('lat');
-            $table->float('lng');
+            $table->foreignId('stop_type_id');
+            $table->decimal('lat', 16, 12);
+            $table->decimal('lng', 16, 12);
+            $table->string('group_label')->nullable();
             $table->timestamps();
         });
 

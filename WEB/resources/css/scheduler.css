@@ -82,3 +82,27 @@
     left: 20px !important;
     opacity: 100% !important;
 }
+
+.l-input {
+    border: gray 1px solid;
+    border-radius: 8px;
+    height: 35px;
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.feature {
+    display: flex;
+    padding: 5px;
+    margin-top: 10px;
+    border: 1px solid red;
+    flex-direction: column;
+}
+
+.feature-attribute {
+    margin-bottom: 10px;
+    display: inline-flex;
+    border: 1px solid red;
+
+}

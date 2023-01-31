@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Stop extends Model
+class Stop_type extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'name', 'stop_type_id', 'lat', 'lng'
+        'name', 'icon'
     ];
 }
