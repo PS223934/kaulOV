@@ -16,6 +16,7 @@
         "vite": "^4.0.4"
     },
     "dependencies": {
+        "@fortawesome/free-solid-svg-icons": "^6.2.1",
         "@google/markerclusterer": "^2.0.9",
         "@googlemaps/markerclusterer": "^2.0.15",
         "@googlemaps/three": "^3.0.3",
