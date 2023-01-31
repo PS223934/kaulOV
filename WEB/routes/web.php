@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\UserCreditController;
 use App\Http\Controllers\TokenController;
+use App\Http\Controllers\StopController;
+use App\Http\Controllers\LineController;
 use App\Models\Person;
 use App\Models\User;
 use App\Models\UserCredit;
@@ -66,7 +68,9 @@ Route::middleware(['permission:persoonlijk rooster bekijken'])->group(function (
 });
 
 Route::middleware(['permission:schedules beheren'])->group(function () {
-    Route::resource('scheduler', ScheduleController::class);
+    Route::resource('scheduler/stops', StopController::class);
+    Route::resource('scheduler/lines', LineController::class);
+    Route::resource('scheduler/schedules', ScheduleController::class);
 });
 
 Route::middleware(['permission:toegang-app'])->group(function () {

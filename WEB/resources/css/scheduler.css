@@ -1,7 +1,84 @@
-#addMarkerContainer {
+.mainNav {
+    position: absolute;
+    z-index: 1;
+    left: 20px;
+    top: 20px;
+}
+
+.navContainer {
+    width: 332px;
+    height: 50px;
+    background-color: rgba(220, 215, 210, 0.95);
+    backdrop-filter: blur(5px);
+    position: absolute;
+    left: 68px;
+    top: 15px;
+    z-index: 1;
+    border-radius: 5px;
+    padding-left: 0px;
+    display: flex;
+    overflow: hidden;
+}
+
+.navButton {
+    display: inline-block;
+    width: 100%;
+    transition: border 150ms ease, color 150ms ease;
+    color: rgba(35, 35, 35, 0.77);
+
+}
+
+.navButton:hover {
+    cursor: pointer;
+    border-bottom: solid 3px #232323;
+    color: rgba(35, 35, 35, 1);
+}
+
+.navButtonSelected {
+    border-bottom: solid 3px #000000 !important;
+    color: rgba(0, 0, 0, 1) !important;
+}
+
+.navButton > span {
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+
+.backbtn {
+    width: 80px;
+    height: auto;
+    z-index: 5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    filter: drop-shadow(rgba(0, 0, 0, 0.33) 3px 0px 6px);
+    transition: transform 400ms ease;
+}
+
+.backbtn:hover {
+    transform: scale(1.1);
+}
+
+#featureContainer {
     width: 400px;
     height: 50%;
-    background-color: white;
+    padding: 10px;
+    background-color: rgba(220, 215, 210, 0.95);
+    backdrop-filter: blur(5px);
     position: absolute;
-    
+    z-index: 1;
+    border-radius: 5px;
+    top: 120px;
+    left: -100px;
+    opacity: 0%;
+    transition: left 400ms ease, opacity 400ms ease;
+}
+
+.feature-in {
+    left: 20px !important;
+    opacity: 100% !important;
 }
