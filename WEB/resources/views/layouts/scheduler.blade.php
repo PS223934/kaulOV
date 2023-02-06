@@ -18,12 +18,14 @@
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
         <!-- style sheets -->
-        @vite(['resources/css/main.css', 'resources/css/map.css', 'resources/css/scheduler.css'])
+        @vite(['resources/css/main.css', 'resources/css/map.css', 'resources/css/scheduler.css', 'resources/css/btns.css', 'resources/css/dropdownsyndrome.css'])
         <script>
             function rd(l) {
                 window.location = l;
             }
         </script>
+
+        @yield('css')
     </head>
     <body class="font-sans antialiased">
         @include('layouts.navigation-scheduler')
@@ -36,7 +38,7 @@
             @yield('content')
         </main>
 
-        <div id="map" class="map"></div>
+        <div id="map" class="map mapunfocussed"></div>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjbxodDENOjxVsNZvQiy7wfAK64gJ_RBA&callback=initMap&v=beta" defer></script>
     </body>
 </html>

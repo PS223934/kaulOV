@@ -1,6 +1,6 @@
 .mainNav {
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     left: 20px;
     top: 20px;
 }
@@ -96,13 +96,128 @@
     display: flex;
     padding: 5px;
     margin-top: 10px;
-    border: 1px solid red;
     flex-direction: column;
 }
 
 .feature-attribute {
     margin-bottom: 10px;
     display: inline-flex;
-    border: 1px solid red;
+}
 
+/* content */
+.mapwrapper {
+    display: flex;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.schedulercontent {
+    display: inline-flex;
+    width: 1000px;
+    height: 720px;
+    padding: 20px;
+    background-color: rgba(220, 215, 210, 0.95);
+    z-index: 1;
+    border-radius: 5px;
+    flex-direction: column;
+}
+
+.theactualcontent {
+    display: inline-block;
+    height: 82%;
+    padding: 10px;
+    overflow: scroll;
+}
+
+.theactualcontentdivider {
+    margin-bottom: 20px;
+}
+
+.ctitle {
+    display: inline-block;
+    border-bottom: 1px solid gray;
+    height: 65px;
+    width: 100%;
+}
+
+.ctitle > h1 {
+    font-size: 35px;
+}
+
+.btncontainer {
+    display: inline-block;
+    height: 10%;
+}
+
+.defaultbtn {
+    border: 1px solid gray;
+    width: 65px;
+    height: 65px;
+    border-radius: 70%;
+    float: right;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: background-color 300ms ease;
+}
+.defaultbtn:hover {
+    background-color: rgba(157, 157, 157, 0.37);
+}
+
+.delbtn {
+    float: left !important;
+    margin-left: 20px;
+}
+
+.funnyinput {
+    -webkit-appearance:     none;
+    -moz-appearance:        none;
+    -ms-appearance:         none;
+    -o-appearance:          none;
+    appearance:             none;
+    background-color: rgba(255,255,255,0);
+    font-size: 35px;
+    border: none;
+}
+
+.linecontainer {
+    width: 100%;
+    height: 50px;
+    border: 2px solid black;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    background-color: rgba(164, 164, 164, 0.21);
+    display: inline-flex;
+    flex-direction: row;
+    transition: background-color 300ms ease;
+}
+
+.linecontainer:hover {
+    cursor: pointer;
+    background-color: rgba(164, 164, 164, 0.50);
+}
+
+.lineid, .lineA, .lineB {
+    text-align: center;
+    font-size: 24px;
+    height: 100%;
+    padding-top: 5px;
+}
+
+.lineid {
+    width: 90px;
+    border-right: gray 1px dashed;
+}
+
+.lineA, .lineB {
+    width: 48%;
+}
+
+.linedivider {
+    width: 4%;
+    font-size: 33px;
+    padding-top: 6px;
 }

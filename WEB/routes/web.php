@@ -8,6 +8,7 @@ use App\Http\Controllers\UserCreditController;
 use App\Http\Controllers\TokenController;
 use App\Http\Controllers\StopController;
 use App\Http\Controllers\LineController;
+use App\Http\Controllers\RideController;
 use App\Models\Person;
 use App\Models\User;
 use App\Models\UserCredit;
@@ -83,6 +84,10 @@ Route::middleware(['permission:toegang-app'])->group(function () {
 Route::middleware(['role:management|admin'])->group(function () {
     Route::resource('persons', PersonController::class);
     Route::resource('users', UserController::class);
+});
+
+Route::middleware(['permission:kanker'])->group(function () {
+    Route::resource('rides', RideController::class);
 });
 
 require __DIR__.'/auth.php';

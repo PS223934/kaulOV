@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Line;
-use Illuminate\Support\Facades\DB;
-use App\Models\Stop;
 use Illuminate\Support\Facades\Log;
 
-class LineController extends Controller
+class RideController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +14,7 @@ class LineController extends Controller
      */
     public function index()
     {
-        $lines = Line::all();
-        $this->_navLog(__FUNCTION__); return view('line.index', ['lines' => $lines]);
+        $this->_navLog(__FUNCTION__); return view('ride.index');
     }
 
     /**
@@ -28,7 +24,7 @@ class LineController extends Controller
      */
     public function create()
     {
-        $this->_navLog(__FUNCTION__); return view('line.create', ['stops' => Stop::all()]);
+        //
     }
 
     /**
@@ -39,14 +35,7 @@ class LineController extends Controller
      */
     public function store(Request $request)
     {
-        $line = new Line();
-
-        $line->name = $request->name;
-        $line->destination_A = $request->A;
-        $line->destination_B = $request->B;
-        $line->save();
-
-        return redirect()->route('lines.index');
+        //
     }
 
     /**
@@ -68,10 +57,7 @@ class LineController extends Controller
      */
     public function edit($id)
     {
-        $line = Line::where('id', $id)->first();
-        $stops = Stop::all();
-        $matching = DB::table('line_has_stops')->where('line_id', $id)->get();
-        $this->_navLog(__FUNCTION__); return view('line.edit', ['line' => $line, 'stops' => $stops, 'matching' => $matching]);
+        //
     }
 
     /**
@@ -83,13 +69,7 @@ class LineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        DB::table('line_has_stops')->where('line_id', $id)->delete();
-
-        if($request->stop == null) {return redirect()->route('lines.index');};
-        foreach($request->stop as $stop) {
-            DB::insert('insert into line_has_stops (line_id, stop_id) values (?, ?)', [intval($id), intval($stop)]);
-        }
-        return redirect()->route('lines.index');
+        //
     }
 
     /**

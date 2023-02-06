@@ -1,0 +1,58 @@
+.addbtn, .editbtn, .submitbtn, .undobtn, .exitbtn {
+    border-radius: 70%;
+    width: 62px;
+    height: 62px;
+    color: rgb(70, 70, 70);
+    font-size: 42px;
+    opacity: 1;
+    font-weight: 100;
+    background: whitesmoke;
+    transition: all 0.2s;
+    transform: rotate(360deg);
+}
+
+.innerbtn {
+    border-radius: 70%;
+    display: inline-block;
+    width: 0%;
+    height: 0%;
+    background-color: #d0d0d0;
+    margin: 50% 50%;
+    transition: all 0.15s;
+    opacity: 0;
+}
+
+.outerbtn {
+    filter: drop-shadow(0rem 0.15rem 0.05rem #f1ae05);
+    border-radius: 70%;
+    width: 62px;
+    height: 62px;
+    background: whitesmoke;
+    border: 1px solid #f1ae05;
+    opacity: 1;
+    transition: all 0.45s ease-out;
+}
+
+.spinbtn {
+    transform: rotate(360deg);
+    filter: drop-shadow(0rem 0rem 0rem #ffb700);
+    border: 1px solid #f1ae0547;
+}
+
+.spinbtnhidden {
+    opacity: 0;
+}
+
+.spinbtnhidden > .outerbtn {
+    transform: rotate(360deg);
+    filter: drop-shadow(0rem 0rem 0rem #00ff1e);
+}
+
+.addbtn:hover + .innerbtn, .editbtn:hover + .innerbtn, .submitbtn:hover + .innerbtn, .undobtn:hover + .innerbtn, .exitbtn:hover + .innerbtn, .innerbtn:hover {
+    height: 100%;
+    width: 100%;
+    margin: 0% 0%;
+    background-color: #ffb70032;
+    cursor: pointer;
+    opacity: 1;
+}

@@ -74,7 +74,7 @@ return [
             [
                 'name' => 'admin',
                 'permissions' => [
-                    'admin'
+                    'admin', 'kanker'
                 ],
                 'parent_of' => [],
             ]

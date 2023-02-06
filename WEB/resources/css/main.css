@@ -175,3 +175,27 @@ h1 {
 }
 
 
+
+
+
+
+
+
+
+
+
+/* balzak neger */
+
+.columnhead {
+    border: red 1px solid;
+    height: 60px;
+    display: flex;
+}
+
+
+
+
+
+
+
+
